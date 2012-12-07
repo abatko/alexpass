@@ -2,15 +2,16 @@ class Alexpass
 
   DEFAULT_LENGTH = 8
 
-  # visually unambiguous character sets
-  LN = '234'.split('')               # Left-hand Numbers
-  RN = '789' .split('')              # Right       ''
-  LL = 'qwertsdfgzxcv'.split('')     # Left-hand Lowercase letters
-  RL = 'yuiphjknm'.split('')         # Right        ''       ''
-  LU = LL.collect {|c| c.capitalize} # Left-hand Uppercase letters
-  RU = RL.collect {|c| c.capitalize} # Right        ''       ''
+  # character sets divided by touch typing hands
+  LN = '12345'.split('')                   # Left-hand Numbers
+  RN = '67890' .split('')                  # Right       ''
+  LL = ('qwert'+'asdfg'+'zxcvb').split('') # Left-hand Lowercase letters
+  RL = ('yuiop'+'hjkl'+'nm').split('')     # Right        ''       ''
+  LU = LL.collect {|c| c.capitalize}       # Left-hand Uppercase letters
+  RU = RL.collect {|c| c.capitalize}       # Right        ''       ''
 
-  AMBIGUOUS = '1l6b0Oao'
+  AMBIGUOUS = '1l0Oao' + # visually ambiguous
+              '6b'       # left/right ambiguous
 
   # patterns for even and odd length passwords;
   # alternating hands, with the last always being on the left;

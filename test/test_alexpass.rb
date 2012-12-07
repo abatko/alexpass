@@ -56,10 +56,10 @@ class AlexpassTest < Test::Unit::TestCase
 
   def test__permutations
     # these hardcoded values will need to be updated if/when the character set lengths change
-    assert_equal 14414517, Alexpass.permutations
-    assert_equal 26426383893, Alexpass.permutations(:memorizable => false)
-    assert_equal 45535459203, Alexpass.permutations(:memorizable => true, :length => 12)
-    assert_equal 4200447293408457, Alexpass.permutations(:memorizable => false, :length => 12)
+    assert_equal 24640200, Alexpass.permutations
+    assert_equal 40822898688, Alexpass.permutations(:memorizable => false)
+    assert_equal 48048390000, Alexpass.permutations(:memorizable => true, :length => 11)
+    assert_equal 373611168792576, Alexpass.permutations(:memorizable => false, :length => 11)
   end
 
 end

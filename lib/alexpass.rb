@@ -10,7 +10,7 @@ class Alexpass
   LU = LL.collect {|c| c.capitalize} # Left-hand Uppercase letters
   RU = RL.collect {|c| c.capitalize} # Right        ''       ''
 
-  # AMBIGUOUS = '1lI5S6b0Oao'
+  AMBIGUOUS = '1l6b0Oao'
 
   # patterns for even and odd length passwords;
   # alternating hands, with the last always being on the left;
@@ -37,7 +37,7 @@ class Alexpass
     pattern = options[:length].even? ? @pattern_even : @pattern_odd
     plen = pattern.length
     (0...options[:length]).each { |i|
-      p *= options[:memorizable] ? pattern[i%plen][0].length : pattern[i%plen].flatten.length
+      p *= (options[:memorizable] ? pattern[i%plen][0] : pattern[i%plen].flatten).reject{|c| AMBIGUOUS.include?(c)}.length
     }
     p
   end
@@ -56,7 +56,14 @@ private
   def self._generate(options={})
     options = self._verify_options(options)
     pattern = options[:length].even? ? @pattern_even : @pattern_odd
-    return pattern.collect { |i| _sample(i[options[:memorizable] ? 0 : rand(i.length)]) }.join.slice(0..-1)
+    return pattern.collect { |i|
+      s =''
+      loop do
+        s = _sample(i[options[:memorizable] ? 0 : rand(i.length)])
+        break unless AMBIGUOUS.include?(s)
+      end
+      s
+    }.join.slice(0..-1)
   end
 
   # pick a random element from the given array

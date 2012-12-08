@@ -30,16 +30,26 @@ class Alexpass
     password.slice(0...options[:length])
   end
 
-  # return the number of permutations
-  # options = {:length => 8, :memorizable => true}
+  # return the number of permutations,
+  # and additionally print out details when options[:permutations] contains v's
+  # options = {:length => 8, :memorizable => true, :permutations => 'vvv'}
   def self.permutations(options={})
     options = self._verify_options(options)
     p = 1
     pattern = options[:length].even? ? @pattern_even : @pattern_odd
     plen = pattern.length
+    samples = []
     (0...options[:length]).each { |i|
-      p *= (options[:memorizable] ? pattern[i%plen][0] : pattern[i%plen].flatten).reject{|c| AMBIGUOUS.include?(c)}.length
+      samples[i] = (options[:memorizable] ? pattern[i%plen][0] : pattern[i%plen].flatten).reject{|c| AMBIGUOUS.include?(c)}
+      p *= samples[i].length # take the product of all sample sizes to get the total number of permutations
     }
+    if options[:permutations] =~ /^v{3,}\Z/
+      puts "sample sets:"
+      samples.each {|s|
+        puts s.inspect
+      }
+    end
+    puts "#{samples.collect {|s| s.length}.join(' * ')} permutations" if options[:permutations] =~ /^v{2,}\Z/
     p
   end
 

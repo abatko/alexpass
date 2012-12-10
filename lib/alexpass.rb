@@ -10,8 +10,8 @@ class Alexpass
   LU = LL.collect {|c| c.capitalize}       # Left-hand Uppercase letters
   RU = RL.collect {|c| c.capitalize}       # Right        ''       ''
 
-  AMBIGUOUS = '1l0Oao' + # visually ambiguous
-              '6b'       # left/right ambiguous
+  AMBIGUOUS = '1lI0O' + # visually ambiguous
+              '6b'      # left/right ambiguous
 
   # patterns for even and odd length passwords;
   # alternating hands, with the last always being on the left;

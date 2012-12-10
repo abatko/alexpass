@@ -1,6 +1,7 @@
 class Alexpass
 
   DEFAULT_LENGTH = 8
+  DEFAULT_OPTIONS = {:length => DEFAULT_LENGTH, :memorizable => true}
 
   # character sets divided by touch typing hands
   LN = '12345'.split('')                   # Left-hand Numbers
@@ -21,7 +22,6 @@ class Alexpass
   @pattern_odd  = [[LL], [RU, RN, RL], [LU, LN, LL], [RN, RL, RU], [LL, LU, LN], [RL, RU, RN], [LN, LL, LU], [RL]]
 
   # return a password
-  # options = {:length => 8, :memorizable => true}
   def self.generate(options={})
     options = self._verify_options(options)
     password = ''
@@ -32,7 +32,6 @@ class Alexpass
 
   # return the number of permutations,
   # and additionally print out details when options[:permutations] contains v's
-  # options = {:length => 8, :memorizable => true, :permutations => 'vvv'}
   def self.permutations(options={})
     options = self._verify_options(options)
     p = 1
@@ -57,7 +56,7 @@ private
 
   def self._verify_options(options=nil)
     raise ArgumentError, "expected a Hash, but got: #{options.inspect}" unless options.kind_of?(Hash)
-    options = {:memorizable => true, :length => DEFAULT_LENGTH}.merge(options)
+    options = DEFAULT_OPTIONS.merge(options)
     raise ArgumentError, "expected :memorizable to be boolean, but got: #{options[:memorizable].inspect}" unless options[:memorizable].kind_of?(TrueClass) || options[:memorizable].kind_of?(FalseClass)
     raise ArgumentError, "expected :length to be a Fixnum, but got: #{options[:length].inspect}" unless options[:length].kind_of?(Fixnum)
     raise ArgumentError, "expected :length > 0, but got: #{options[:length]}" unless options[:length] > 0

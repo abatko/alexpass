@@ -1,5 +1,7 @@
 class Alexpass
 
+  VERSION = '0.1.0'
+
   DEFAULT_LENGTH = 8
   DEFAULT_OPTIONS = {:length => DEFAULT_LENGTH, :memorizable => true}
 

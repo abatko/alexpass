@@ -79,5 +79,5 @@ Print the *sample sets* and *permutation calculation* of a default password, and
 Companion Command-Line Tool
 ---------------------------
 
-Coming soon.
+Get it here: https://github.com/abatko/alexpass.rb
 

@@ -54,6 +54,7 @@ class Alexpass
 
 private
 
+  # verify and return an options hash, after merging the default options with the incoming ones
   def self._verify_options(options=nil)
     raise ArgumentError, "expected a Hash, but got: #{options.inspect}" unless options.kind_of?(Hash)
     options = DEFAULT_OPTIONS.merge(options)
@@ -63,6 +64,7 @@ private
     options
   end
 
+  # generate and return a string, having a parity-appropriate pattern, where each character is sampled from the appropriate character set (depending on whether :memorizable is true or false)
   def self._generate(options={})
     options = self._verify_options(options)
     pattern = options[:length].even? ? @pattern_even : @pattern_odd

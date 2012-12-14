@@ -8,7 +8,7 @@ Gem::Specification.new do |s|
   s.version     = Alexpass::VERSION
 
   s.summary     = Alexpass::DEPRECATED
-  s.description = s.summary
+  s.description = "#{s.summary} (https://rubygems.org/gems/altpass)"
 
   s.authors     = ['Alex Batko']
   s.email       = ['alexbatko@gmail.com']

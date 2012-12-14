@@ -7,8 +7,8 @@ Gem::Specification.new do |s|
   s.name        = 'alexpass'
   s.version     = Alexpass::VERSION
 
-  s.summary     = 'Generate passwords derived from hand-alternating, visually unambiguous, alphanumeric characters'
-  s.description = "#{s.summary}."
+  s.summary     = Alexpass::DEPRECATED
+  s.description = s.summary
 
   s.authors     = ['Alex Batko']
   s.email       = ['alexbatko@gmail.com']
